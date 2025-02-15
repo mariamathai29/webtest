@@ -3,112 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Elastic Spider Web</title>
+    <title>Gelatinous String</title>
     <style>
-        body { margin: 0; overflow: hidden; background: black; }
-        canvas { display: block; }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .string-container {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+        }
+
+        @keyframes wobble {
+            0%, 100% {
+                d: path("M 50 0 Q 75 25, 50 50 T 50 100 T 50 200 T 50 300 T 50 400 T 50 500 T 50 600 T 50 700 T 50 800 T 50 900 T 50 1000");
+            }
+            50% {
+                d: path("M 50 0 Q 25 50, 50 100 T 75 200 T 25 300 T 75 400 T 25 500 T 75 600 T 25 700 T 75 800 T 25 900 T 75 1000");
+            }
+        }
+
+        path {
+            fill: none;
+            stroke: limegreen;
+            stroke-width: 10;
+            stroke-linecap: round;
+            animation: wobble 2s infinite ease-in-out alternate;
+        }
     </style>
 </head>
 <body>
-    <canvas id="webCanvas"></canvas>
-    <script>
-        const canvas = document.getElementById("webCanvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const nodes = [];
-        const numNodes = 20;
-        const elasticity = 0.1;
-        const mouse = { x: null, y: null, radius: 100 };
-
-        class Node {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.baseX = x;
-                this.baseY = y;
-                this.vx = 0;
-                this.vy = 0;
-            }
-
-            update() {
-                let dx = this.x - mouse.x;
-                let dy = this.y - mouse.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < mouse.radius) {
-                    let angle = Math.atan2(dy, dx);
-                    let force = (mouse.radius - distance) / mouse.radius;
-                    this.vx += Math.cos(angle) * force * 5;
-                    this.vy += Math.sin(angle) * force * 5;
-                }
-
-                this.vx *= 0.95;
-                this.vy *= 0.95;
-
-                this.x += this.vx;
-                this.y += this.vy;
-
-                let returnDx = this.baseX - this.x;
-                let returnDy = this.baseY - this.y;
-                this.vx += returnDx * elasticity;
-                this.vy += returnDy * elasticity;
-            }
-        }
-
-        function initWeb() {
-            nodes.length = 0;
-            let cols = 5, rows = 4;
-            let spacingX = canvas.width / (cols + 1);
-            let spacingY = canvas.height / (rows + 1);
-            
-            for (let i = 1; i <= cols; i++) {
-                for (let j = 1; j <= rows; j++) {
-                    nodes.push(new Node(i * spacingX, j * spacingY));
-                }
-            }
-        }
-
-        function drawWeb() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = "white";
-            ctx.lineWidth = 2;
-
-            for (let i = 0; i < nodes.length; i++) {
-                let node = nodes[i];
-                node.update();
-
-                for (let j = i + 1; j < nodes.length; j++) {
-                    let otherNode = nodes[j];
-                    let dx = node.x - otherNode.x;
-                    let dy = node.y - otherNode.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(node.x, node.y);
-                        ctx.lineTo(otherNode.x, otherNode.y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(drawWeb);
-        }
-
-        window.addEventListener("mousemove", (event) => {
-            mouse.x = event.clientX;
-            mouse.y = event.clientY;
-        });
-
-        window.addEventListener("resize", () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initWeb();
-        });
-
-        initWeb();
-        drawWeb();
-    </script>
+    <div class="string-container">
+        <svg viewBox="0 0 100 1000" preserveAspectRatio="xMidYMid slice">
+            <path d="M 50 0 Q 75 25, 50 50 T 50 100 T 50 200 T 50 300 T 50 400 T 50 500 T 50 600 T 50 700 T 50 800 T 50 900 T 50 1000" />
+        </svg>
+    </div>
 </body>
 </html>
