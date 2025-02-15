@@ -3,52 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akira Yamaoka Inspired Homepage</title>
+    <title>maria's page</title>
+    <link rel="icon" href="assets/lily.png" type="image/png">
     <style>
+        @font-face {
+            font-family: "CustomFont";
+            src: url("assets/industrial.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
+            background-color: black;
+            color: white;
+            font-family: "Times New Roman", serif;
+            font-size: 16px;
             margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .header {
+
+        .section {
+            width: 60%;
+            border: 2px solid white;
             padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            margin: 100px 0;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
         }
-        .nav {
+
+        h1 {
+            font-family: "CustomFont", sans-serif;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
-            padding: 10px;
-            background-color: #1c1c1c;
+            gap: 30px;
         }
-        .nav a {
-            color: #fff;
+
+        .social-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-decoration: none;
+            color: white;
             font-size: 18px;
+            font-family: "CustomFont", sans-serif;
         }
-        .nav a:hover {
-            color: #ff4444;
+
+        .social-button img {
+            width: 175px;
+            height: 175px;
         }
-        .content {
-            padding: 50px;
+
+        .social-button:hover span {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="header">Akira Yamaoka Inspired Homepage</div>
-    <div class="nav">
-        <a href="#profile">Profile</a>
-        <a href="#discography">Discography</a>
-        <a href="#shop">Shop</a>
-        <a href="#contact">Contact</a>
-        <a href="#news">News</a>
+    <div class="section">
+        <p>interested in circuit design, firmware, and signals processing.</p>
     </div>
-    <div class="content">
-        <p>Welcome to the world of atmospheric sound and haunting melodies.</p>
+    
+    <div class="section">
+        <h1>about me</h1>
+        <ul>
+            <li>Electrical Engineering, University of Waterloo (2024 - 2029)</li>
+            <li>DSP and Software Intern, Ethernovia (Jan 2025 - Apr 2025)</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h1>current projects</h1>
+        <p>I'm currently learning Verilog (I'm working on building a CPU!) and fundamentals of PCB design.</p>
+        <p>Recent/notable projects on my GitHub:</p>
+        <ul>
+            <li>Sometimes I try out Project Euler problems, solutions can be found under project_euler.</li>
+            <li>You can find my first-year design project, ParkPal, under ECE198.</li>
+            <li>I've been working through solutions for Bioinformatics Algorithms: An Active Learning Approach, under bioinformatics.</li>
+        </ul>
+        <p>I'm also currently reading:</p>
+        <ul>
+            <li>Computer Organization and Design (Patterson, Hennessy)</li>
+            <li>Modern Digital and Analog Communication Systems (Lathi, Ding)</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h1>other pages</h1>
+        <div class="button-container">
+            <a href="https://github.com/mariamathai29" target="_blank" class="social-button">
+                <img src="assets/button1.png" alt="github">
+                <span>github</span>
+            </a>
+            <a href="https://www.linkedin.com/in/memathai/" target="_blank" class="social-button">
+                <img src="assets/button2.png" alt="linkedin">
+                <span>linkedin</span>
+            </a>
+        </div>
     </div>
 </body>
 </html>
